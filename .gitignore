@@ -1,0 +1,13 @@
+# OS generated files #
+######################
+.DS_Store
+.idea/
+
+# Cache files #
+###############
+/utils/__pycache__/
+tasks/__pycache__/
+
+# Storage files #
+################
+Tasks.txt
