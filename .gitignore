@@ -11,3 +11,8 @@ tasks/__pycache__/
 # Storage files #
 ################
 Tasks.txt
+Errorlog.txt
+
+# Conf files #
+##############
+utils/conf.py

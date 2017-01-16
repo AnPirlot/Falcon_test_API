@@ -1,7 +1,8 @@
 import falcon
-import sys
 import utils.json
+import utils.storage
 
+storage = utils.storage.Storage()
 
 class Collection(object):
 
@@ -10,7 +11,12 @@ class Collection(object):
     def on_post(self, req, resp):
 
         task_dict = req.context['content']
+        self._store(task_dict)
 
+        resp.status = falcon.HTTP_201
+
+
+    def _store(self, task_dict):
         try:
             task_name = task_dict['name']
             task_begin_date = task_dict['begin_date']
@@ -20,9 +26,11 @@ class Collection(object):
             with open("Tasks.txt", "a") as text_file:
                 text_file.write("{0}".format(task_info))
 
-        except:
-            exception = sys.exc_info()[0]
-            with open("Tasks.txt", "a") as text_file:
-                text_file.write("{0}".format(exception))
+            insert = """INSERT INTO "Tasks"."Tasks" ("Name", "Begin_date", "End_date") VALUES ('%s', '%s', '%s')""" % (
+            task_name, task_begin_date, task_end_date)
+            storage.set(insert)
 
-        resp.status = falcon.HTTP_201
+        except Exception as exception:
+            with open("Errorlog.txt", "a") as text_file:
+                text_file.write("\n In tasks.tasks.Collection._store: {0}".format(exception))
+

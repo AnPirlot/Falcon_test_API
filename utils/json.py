@@ -4,6 +4,7 @@ import json
 class RequireJSON(object):
 
     def process_request(req, resp, resource, params):
+        #TODO: update ref
         if not req.client_accepts_json:
             raise falcon.HTTPNotAcceptable('This API only supports responses encoded as JSON.',
                                            href='http://docs.examples.com/api/json')
