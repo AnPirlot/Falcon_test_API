@@ -8,6 +8,12 @@ class Collection(object):
 
     @falcon.before(utils.json.RequireJSON.process_request)
     @falcon.before(utils.json.JSONTranslator.process_request)
+    def on_get(self, req, resp):
+        resp.body = '{"message": "Here are your tasks!"}'
+        resp.status = falcon.HTTP_200
+
+    @falcon.before(utils.json.RequireJSON.process_request)
+    @falcon.before(utils.json.JSONTranslator.process_request)
     def on_post(self, req, resp):
 
         task_dict = req.context['content']
