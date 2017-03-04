@@ -1,7 +1,8 @@
-# OS generated files #
+# Generated files #
 ######################
 .DS_Store
 .idea/
+*.pyc
 
 # Cache files #
 ###############
