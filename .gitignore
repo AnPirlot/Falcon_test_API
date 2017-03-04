@@ -16,3 +16,7 @@ Errorlog.txt
 # Conf files #
 ##############
 utils/conf.py
+
+# Virutal env #
+###############
+/venv
